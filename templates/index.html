@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
+    <title>Users CR</title>
+</head>
+<body>
+    <h1>All Users</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for one_user in all_users %}
+                <tr>
+                    <td>{{one_user.first_name}}</td>
+                    <td>{{one_user.last_name}}</td>
+                    <td>{{one_user.email}}</td>
+                    <td id="actions">
+                        <a href="/show/{{one_user.id}}" class="manage-link">Show</a>
+                        <a href="/update/{{one_user.id}}" class="manage-link">Update</a>
+                        <a href="/delete/{{one_user.id}}" class="manage-link">Delete</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/create_user" class="btn btn-secondary home-btn">Add a New User</a>
+</body>
+</html>
